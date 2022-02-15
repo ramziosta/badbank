@@ -5,11 +5,11 @@ import LoginLogoutButton from "../components/LoginLogoutButton";
 import SiteSideBar from "../components/siteSideBar";
 import { Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
-
+export const timeStamp = new Date().toLocaleDateString();
 function Deposit() {
   const [show, setShow] = useState(true);
   const [status, setStatus] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState("");  
   const [isDisabled, setIsdisabled] = useState(true);
   const ctx = useContext(UserContext);
 
@@ -32,6 +32,7 @@ function Deposit() {
   function handleDeposit() {
    console.log("💵 "+ amount);
     if (!validate(amount, "amount")) return;
+    ctx.users.push({transactionType:'Deposit', amount, transactionDate: timeStamp });
     ctx.users[0].balance += parseInt(amount);
     //add ctx.user[0].transactionType
     //add ctx.user[0].transactionAmount
@@ -51,7 +52,7 @@ function Deposit() {
   {ctx.users[0].user == "" ? (
         <>
          <Link to ="/login" class="fa fa-user" ></Link>
-          <div className="text-center fs-4 mt-5">
+          <div className="text-center fs-4 mt-5" style={{height: '600px'}}>
             Please <LoginLogoutButton />  
             <br />
            or {" "}
@@ -65,7 +66,8 @@ function Deposit() {
           {show ?
            (
             <>
-            <SiteSideBar />            
+            <SiteSideBar />     
+            <div style={{height:"650px"}} >      
             <Card
               style={{ maxWidth: "25rem", marginTop: "4rem" }}
               bgcolor="dark"
@@ -101,11 +103,13 @@ function Deposit() {
                 </>
               }
             />
+            </div>
             </>
           ) :
            
            (<>
             <SiteSideBar />
+            <div style={{height:"650"}}>
             <Card
               style={{ maxWidth: "25rem", marginTop: "4rem" }}
               bgcolor="dark"
@@ -117,18 +121,19 @@ function Deposit() {
                   <br />
                   <h5>Deposit Amount: ${amount} </h5>
                   <hr />
-                  <div>Current balance: ${ctx.users[0].balance} </div>
+                  <div>Current Balance: ${ctx.users[0].balance} </div>
                   <br />
                   <button
                     type="submit"
                     className="btn btn-primary"
                     onClick={clearForm}
                   >
-                    Deposit diffrent amount
+                    New Deposit Transaction
                   </button>
                 </>
               }
             />
+            </div>
             </>
           )}
         </>

@@ -76,6 +76,7 @@ function Login() {
     <>
       {show ? (
         <>
+        <div style={{height:"600px"}}>
         <Card
         style={{ maxWidth: "25rem", marginTop: "8rem", backgroundColor:"rgba(108, 108, 108, 0.4)", width: "100%",
                   maxWidth: "420px",
@@ -129,11 +130,13 @@ function Login() {
             </>
           }
         />
+        </div>
         </>
       ) : (
         <>
-        <SiteSideBar />
-          <Card
+      
+          <div style={{height:"650px"}}>
+          {/* <Card
             style={{ maxWidth: "60%", marginTop: "4rem", marginLeft:"10rem" }}
             bgcolor="dark"
             status={status}
@@ -155,9 +158,9 @@ function Login() {
                 </Row>
               </>
             }
-          />
-          {/* !------------- */}
+          /> */}
           <DashBoard />
+        </div>
         </>
       )}
     </>

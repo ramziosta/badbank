@@ -146,11 +146,25 @@ function CreateAccount() {
     setMatchPwd("");
   }
 
+  const handleLogout = () => {
+    const elementIndex = ctx.users.findIndex(
+      (item) => item.email == "" && item.pwd == ""
+    );
+    ctx.users.splice(elementIndex, 1);
+    ctx.users.splice(0, 0, {
+      name: "",
+      email: "",
+      pwd: "",
+      balance: null,
+    });
+    ctx.log = false;
+  };
+
   return (
     <>
       {show ? (
         <>
-         <div className="creataccountform">
+         <div className="creataccountform" style={{marginBottom:"4rem"}}>
             
             <div className="bg-img">
               {success ? (
@@ -371,18 +385,19 @@ function CreateAccount() {
               <>
                 <h5 className="fs-2">Success</h5>
                 <Link to="/login"  className="btn btn-primary fs-2 Link"
-                style={{ borderRadius: "0px", marginTop: "4rem" }}>
+                style={{ borderRadius: "0px" }}>
                  LogIn
                 </Link>
                 <br />
-                <h5>Open New Savings Account</h5>
-                <Link
-                to="/createaccount"
+                <h5 style={{margin: "2rem 0rem"}} >Open New Savings Account</h5>
+                <NavLink
+                to="/CreateAccount/"
                 className="fs-2 Link"
-                style={{ borderRadius: "0px" }}
+                style={{ borderRadius: "0px"}}
+                onClick={{handleLogout}}
               >
                 Create an Account
-              </Link>
+              </NavLink>
               </>
             }
           />

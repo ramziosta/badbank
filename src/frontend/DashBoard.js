@@ -1,13 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../components/context";
-// import Card from "../components/context";
+import Card from "../components/context";
 // import LoginLogoutButton from "../components/LoginLogoutButton";
-// import SiteSideBar from "../components/siteSideBar";
-// import { NavLink } from "react-router-dom";
+import SiteSideBar from "../components/siteSideBar";
+import { NavLink, Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 import "./alldata.css";
-
+import LoginUser from './login'
 function DashBoard() {
+  const [user, setUser] = useState({});
   const ctx = useContext(UserContext);
+  
 
   const Table = () => {
     const userdata = ctx.users.filter((item) => item.user != "");
@@ -27,7 +30,7 @@ function DashBoard() {
               </tr>
               <tr>
                 <td key={ctx.transactionType}>{info.transactionType}</td>
-                <td key={ctx.transactionType}>{info.transactionAmoubt}</td>
+                <td key={ctx.transactionAmount}>{info.amount}</td>
                 <td key={ctx.balance}>${info.balance}</td>
                 <td key={ctx.transactionDate}>{info.transactionDate}</td>
               </tr>
@@ -42,10 +45,32 @@ function DashBoard() {
 
   return (
     <>
+      <SiteSideBar />
+          <Card
+            style={{ maxWidth: "60%", marginTop: "4rem", marginLeft:"10rem" }}
+            bgcolor="dark"
+            body={
+              <>
+              
+                <br />
+                <Row className="text-center">
+                  <Col>
+                    <Link to="/deposit" className="btn btn-primary Link">
+                      Make a deposit
+                    </Link>
+                  </Col>
+                  <Col>
+                    <Link to="/withdraw" className="btn btn-primary Link">
+                      Make a withdraw
+                    </Link>
+                  </Col>
+                </Row>
+              </>
+            }
+          />
       <Table />
     </>
   );
 }
 
 export default DashBoard;
-{/* <SiteSideBar /> */}

@@ -53,7 +53,7 @@ return (
       {ctx.users[0].user == "" ? (
         <>
          <Link to ="/login" class="fa fa-user" ></Link>
-          <div className="text-center fs-4 mt-5">
+          <div className="text-center fs-4 mt-5" style={{height: '600px'}} >
             Please <LoginLogoutButton />  
             <br />
            or {" "}
@@ -62,8 +62,12 @@ return (
         </>
       ) : (
         <>
-          <SiteSideBar />
-          <Table />
+        <SiteSideBar />
+        <div style={{height: '710px'}}>
+        <Table />
+        </div>
+          
+        
         </>)
       }
     </>      

@@ -1,20 +1,13 @@
 import { UserContext } from "../components/context";
-import LoginLogoutButton from "../components/LoginLogoutButton";
 import { useContext } from "react";
-import { Row, Col } from "react-bootstrap";
-
+import { NavLink, Link } from "react-router-dom";
 function Logout() {
   const ctx = useContext(UserContext);
   return (
-    <>
-      <div className="text-end">{ctx.users[0].user}</div>
-      <Row>
-        <Col className="text-end">
-          <LoginLogoutButton />
-        </Col>
-      </Row>
-      <h1>You have succesfully logout</h1>
-    </>
+    <div style={{height:"710px"}}>
+     <Link to ="/login" class="fa fa-user" ></Link>
+      <h1 style={{textAlign: 'center', marginTop:"5rem"}}>Account Logout</h1>
+    </div>
   );
 }
 

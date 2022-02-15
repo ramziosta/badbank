@@ -5,7 +5,7 @@ import LoginLogoutButton from "../components/LoginLogoutButton";
 import SiteSideBar from "../components/siteSideBar";
 import { Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
-
+export const timeStamp = new Date().toLocaleDateString();
 function Withdraw() {
   const [show, setShow] = useState(true);
   const [status, setStatus] = useState("");
@@ -38,6 +38,7 @@ function Withdraw() {
   function handleWithdraw() {
     console.log("💸 "+ amount);
     if (!validate(amount, "amount")) return;
+    ctx.users.push({transactionType:'Withdrawal', amount, transactionDate: timeStamp });
     ctx.users[0].balance -= parseInt(amount);
     //add ctx.user[0].transactionType
     //add ctx.user[0].transactionAmount
@@ -57,7 +58,7 @@ function Withdraw() {
       {ctx.users[0].user == "" ? (
         <>
          <Link to ="/login" class="fa fa-user" ></Link>
-          <div className="text-center fs-4 mt-5">
+          <div className="text-center fs-4 mt-5" style={{height: '600px'}} >
             Please <LoginLogoutButton />  
             <br />
            or {" "}
@@ -72,8 +73,9 @@ function Withdraw() {
           {/* //> tennary operator to show and hide the card depending on the handleWithdraw */}
           {show ? (
             <>
-            <SiteSideBar /> 
-            <Card
+            <SiteSideBar />
+            <div style={{height:"650px"}}>
+              <Card
               style={{ maxWidth: "25rem", marginTop: "4rem" }}
               bgcolor="dark"
               header="Make a Withdraw"
@@ -108,12 +110,14 @@ function Withdraw() {
                 </>
               }
             />
+            </div>
             </>
           ) : (
             <>
             <SiteSideBar /> 
+            <div style={{height:"650"}}>
             <Card
-              style={{ maxWidth: "25rem", marginTop: "4rem" }}
+              style={{ maxWidth: "25rem", marginTop: "4rem" , marginBottom:"40rem"}}
               bgcolor="dark"
               header="Withdraw"
               status={status}
@@ -121,19 +125,20 @@ function Withdraw() {
                 <>
                   <h5 className="fs-2 text-primary">Success</h5>
                   <br />
-                  <h5>You have withdrawed ${amount} </h5>
-                  <div>Your balance is now ${ctx.users[0].balance} </div>
+                  <h5>Withdraw Amount: ${amount} </h5>
+                  <div>Current Balance ${ctx.users[0].balance} </div>
                   <br />
                   <button
                     type="submit"
                     className="btn btn-primary"
                     onClick={clearForm}
                   >
-                    Make another withdraw
+                    New Withdraw Transaction
                   </button>
                 </>
               }
             />
+             </div>
             </>
           )}
         </>

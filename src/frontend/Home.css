@@ -110,5 +110,24 @@ margin-top:5rem;
      margin-top:-10rem;
    }
   }
+  @media screen and (max-width: 844px) {
+    .mainheader{
+      margin-top: 15rem;
+    }
+  }
 
-  
+  @media screen and (max-width: 400px) {
+    .mainheader{
+      margin-top: 15rem;
+    }
+
+
+  }
+  @media screen and (max-width:1400px){
+    .pic2{
+      margin-Top: 6rem;
+    }
+    .pic3{
+      margin-top: 4rem;
+    }
+  }

@@ -72,7 +72,7 @@ function Home() {
       <div className="row" style={{marginTop: "10rem", paddingTop: "3rem",
           paddingBottom: "3rem",}} >
         <div className="column-33">
-          <img src={pic2} alt="App" style={{ marginRight:"2rem" }} />
+          <img className="pic2" src={pic2} alt="App" style={{ marginRight:"2rem" }} />
         </div>
         <div className="column-66">
           <h1 className="xlarge-font logocolor" style={{marginTop: "2rem"}}>
@@ -139,6 +139,7 @@ function Home() {
           </div>
           <div className="column-33">
             <img
+            className="pic3"
               src={pic3}
               alt="33"
              
